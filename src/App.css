@@ -1,38 +1,48 @@
 .App {
-  text-align: center;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.galleryWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 5vw;
+	margin-right: 5vw;
+	width: auto;
+	flex-wrap: wrap;
+}
+.galleryWrapper div {
+	height: auto;
+	width: 30%;
+	padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.galleryWrapper div img {
+	height: 200 px;
+	width: 200 px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.dogoInput {
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	padding: 10px;
+	border: 1px solid black;
+	width: 50%;
+	align-self: center;
+	display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.dogoInput input {
+	padding: 5px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dogoInput span {
+	padding: 5px;
+}
+.dogoInput button {
+	padding: 5px;
+	margin-left: 10px;
 }
