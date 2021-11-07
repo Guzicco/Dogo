@@ -5,8 +5,11 @@ interface IDog {
 	age: number;
 	id: number;
 }
+export interface IDogProps extends IDog {
+	onDeleteDog: (id: number) => void;
+}
 
-const Dog = (props: IDog) => {
+const Dog: React.FC<IDogProps> = (props) => {
 	const [dogImageURL, setDogImageURL] = useState("");
 
 	useEffect(() => {
@@ -24,6 +27,13 @@ const Dog = (props: IDog) => {
 			<img src={dogImageURL} alt="cute dog"></img>
 			<p>Name: {props.name}</p>
 			<p>Age: {props.age}</p>
+			<button
+				onClick={() => {
+					props.onDeleteDog(props.id);
+				}}
+			>
+				Delete {props.name}
+			</button>
 		</div>
 	);
 };

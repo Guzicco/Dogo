@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddDogForm, { IAddDogFormProps } from "./AddDogForm";
 import "./App.css";
-import Dog from "./Dog";
+import Dog, { IDogProps } from "./Dog";
 
 interface IDog {
 	name: string;
@@ -12,6 +12,7 @@ const API_URL = "http://localhost:4000";
 
 function App() {
 	const [dogList, setDogList] = useState<IDog[]>([]);
+	const [isLoading, setIsLoading] = useState<Boolean>(false);
 
 	useEffect(() => {
 		fetch(`${API_URL}/dogs`)
@@ -44,6 +45,19 @@ function App() {
 			});
 	};
 
+	const handleRemoveDog: IDogProps["onDeleteDog"] = (id) => {
+		console.log(id);
+		fetch(`${API_URL}/dogs/${id}`, { method: "DELETE" }).then((response) => {
+			if (response.ok) {
+				setDogList(
+					dogList.filter((dogItem) => {
+						return dogItem.id !== id;
+					})
+				);
+			}
+		});
+	};
+
 	return (
 		<div className="App">
 			<nav>
@@ -53,7 +67,12 @@ function App() {
 			{/* todo move gallerywrapper into new component DogList */}
 			<div className="galleryWrapper">
 				{dogList.map((item) => (
-					<Dog name={item.name} age={item.age} id={item.id} />
+					<Dog
+						name={item.name}
+						age={item.age}
+						id={item.id}
+						onDeleteDog={handleRemoveDog}
+					/>
 				))}
 			</div>
 		</div>
