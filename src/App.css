@@ -7,26 +7,13 @@
 }
 
 .galleryWrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-left: 5vw;
-	margin-right: 5vw;
-	width: auto;
-	flex-wrap: wrap;
+	padding-left: 20px;
+	padding-right: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	grid-gap: 20px;
 }
-.galleryWrapper div {
-	height: auto;
-	width: 30%;
-	padding: 20px;
-}
-
-.galleryWrapper div img {
-	height: 200 px;
-	width: 200 px;
-}
-
-.dogoInput {
+.dogInput {
 	margin-top: 10vh;
 	margin-bottom: 10vh;
 	padding: 10px;
@@ -36,13 +23,13 @@
 	display: flex;
 }
 
-.dogoInput input {
+.dogInput input {
 	padding: 5px;
 }
-.dogoInput span {
+.dogInput span {
 	padding: 5px;
 }
-.dogoInput button {
+.dogInput button {
 	padding: 5px;
 	margin-left: 10px;
 }

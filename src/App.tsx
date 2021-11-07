@@ -1,56 +1,60 @@
 import React, { useEffect, useState } from "react";
+import AddDogForm, { IAddDogFormProps } from "./AddDogForm";
 import "./App.css";
-import Dogo from "./Dogo";
+import Dog from "./Dog";
 
-interface IDogo {
+interface IDog {
 	name: string;
 	age: number;
 	id: number;
 }
+const API_URL = "http://localhost:4000";
 
 function App() {
-	const [dogoList, setDogoList] = useState<IDogo[]>([]);
+	const [dogList, setDogList] = useState<IDog[]>([]);
 
 	useEffect(() => {
-		fetch("http://localhost:4000/dogs")
+		fetch(`${API_URL}/dogs`)
 			.then((response) => {
-				return response.json();
+				if (response.ok) {
+					return response.json();
+				}
 			})
 			.then((data) => {
-				setDogoList(data);
+				setDogList(data);
 			});
 	}, []);
 
-	const handleSubmit = (event: SubmitEvent) => {
-		event.preventDefault();
-		console.log("added");
+	const addNewDog: IAddDogFormProps["onSubmit"] = ({ age, name }) => {
+		console.log({ age, name });
+		fetch(`${API_URL}/dogs`, {
+			method: "POST",
+			body: JSON.stringify({ name, age }),
+			headers: { "Content-Type": "application/json" },
+		})
+			.then((response) => {
+				console.log(response);
+				if (response.ok) {
+					return response.json();
+				}
+			})
+			.then((newDog) => {
+				console.log(newDog);
+				setDogList([...dogList, newDog]);
+			});
 	};
 
 	return (
 		<div className="App">
 			<nav>
-				<h1>Dogos - Men's Best Friends</h1>
+				<h1>Dogs - Men's Best Friends</h1>
 			</nav>
-			<div className="dogoInput">
-				<form onSubmit={handleSubmit}>
-					<label>
-						<span>Dogo's Name:</span>
-						<input name="dogoName" type="text"></input>
-					</label>
-					<label>
-						<span>Dogo's Age:</span>
-						<input name="dogoAge" type="number"></input>
-					</label>
-					<button type="submit">Add Dogo</button>
-				</form>
-			</div>
+			<AddDogForm onSubmit={addNewDog} />
+			{/* todo move gallerywrapper into new component DogList */}
 			<div className="galleryWrapper">
-				{dogoList.map((item) => (
-					<Dogo name={item.name} age={item.age} key={item.id} />
+				{dogList.map((item) => (
+					<Dog name={item.name} age={item.age} id={item.id} />
 				))}
-				<Dogo name="Buka" age={4} />
-				<Dogo name="Bambi" age={5} />
-				<Dogo name="Yuki" age={2} />
 			</div>
 		</div>
 	);
