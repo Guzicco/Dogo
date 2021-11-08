@@ -4,7 +4,7 @@ import AddDogForm, {
 } from "./Components/AddDogForm/AddDogForm";
 import "./App.css";
 import Dog, { IDogProps } from "./Components/Dog/Dog";
-import Dog, { IDogProps } from "./Dog";
+import LoadingOverlay from "./Components/LoadingOverlay/LoadingOverlay";
 
 interface IDog {
 	name: string;
@@ -15,17 +15,19 @@ const API_URL = "http://localhost:4000";
 
 function App() {
 	const [dogList, setDogList] = useState<IDog[]>([]);
-	const [isLoading, setIsLoading] = useState<Boolean>(false);
+	const [isLoading, setIsLoading] = useState<Boolean>(true);
 
 	useEffect(() => {
 		fetch(`${API_URL}/dogs`)
 			.then((response) => {
+				setIsLoading(true);
 				if (response.ok) {
 					return response.json();
 				}
 			})
 			.then((data) => {
 				setDogList(data);
+				setIsLoading(false);
 			});
 	}, []);
 
@@ -78,6 +80,7 @@ function App() {
 					/>
 				))}
 			</div>
+			{isLoading ? <LoadingOverlay /> : null}
 		</div>
 	);
 }
