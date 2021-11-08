@@ -1,0 +1,24 @@
+.dog img {
+	width: 90%;
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.dog {
+	border: 2px solid lightblue;
+	border-radius: 20px;
+	padding-bottom: 10px;
+	background: rgb(243, 31, 31);
+	background: linear-gradient(
+		90deg,
+		rgba(243, 31, 31, 1) 0%,
+		rgba(21, 233, 227, 1) 50%,
+		rgba(243, 31, 31, 1) 100%
+	);
+}
+
+.dog button {
+	padding: 10px 15px;
+	background-color: lightblue;
+	border-radius: 20px;
+}

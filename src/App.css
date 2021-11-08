@@ -4,6 +4,12 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	background: rgb(195, 50, 34);
+	background: linear-gradient(
+		0deg,
+		rgba(195, 50, 34, 1) 0%,
+		rgba(253, 244, 45, 1) 100%
+	);
 }
 
 .galleryWrapper {

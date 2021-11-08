@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import AddDogForm, { IAddDogFormProps } from "./AddDogForm";
+import AddDogForm, {
+	IAddDogFormProps,
+} from "./Components/AddDogForm/AddDogForm";
 import "./App.css";
+import Dog, { IDogProps } from "./Components/Dog/Dog";
 import Dog, { IDogProps } from "./Dog";
 
 interface IDog {
