@@ -3,10 +3,10 @@ import AddDogForm, {
 	IAddDogFormProps,
 } from "./Components/AddDogForm/AddDogForm";
 import "./App.css";
-import Dog, { IDogProps } from "./Components/Dog/Dog";
 import LoadingOverlay from "./Components/LoadingOverlay/LoadingOverlay";
+import DogList, { IDogList } from "./Components/DogList/DogList";
 
-interface IDog {
+export interface IDog {
 	name: string;
 	age: number;
 	id: number;
@@ -32,26 +32,22 @@ function App() {
 	}, []);
 
 	const addNewDog: IAddDogFormProps["onSubmit"] = ({ age, name }) => {
-		console.log({ age, name });
 		fetch(`${API_URL}/dogs`, {
 			method: "POST",
 			body: JSON.stringify({ name, age }),
 			headers: { "Content-Type": "application/json" },
 		})
 			.then((response) => {
-				console.log(response);
 				if (response.ok) {
 					return response.json();
 				}
 			})
 			.then((newDog) => {
-				console.log(newDog);
 				setDogList([...dogList, newDog]);
 			});
 	};
 
-	const handleRemoveDog: IDogProps["onDeleteDog"] = (id) => {
-		console.log(id);
+	const handleRemoveDog: IDogList["onRemoveDog"] = (id) => {
 		fetch(`${API_URL}/dogs/${id}`, { method: "DELETE" }).then((response) => {
 			if (response.ok) {
 				setDogList(
@@ -69,17 +65,7 @@ function App() {
 				<h1>Dogs - Men's Best Friends</h1>
 			</nav>
 			<AddDogForm onSubmit={addNewDog} />
-			{/* todo move gallerywrapper into new component DogList */}
-			<div className="galleryWrapper">
-				{dogList.map((item) => (
-					<Dog
-						name={item.name}
-						age={item.age}
-						id={item.id}
-						onDeleteDog={handleRemoveDog}
-					/>
-				))}
-			</div>
+			<DogList list={dogList} onRemoveDog={handleRemoveDog} />
 			{isLoading ? <LoadingOverlay /> : null}
 		</div>
 	);
