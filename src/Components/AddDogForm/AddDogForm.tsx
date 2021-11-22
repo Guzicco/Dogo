@@ -1,4 +1,5 @@
 import React, { ChangeEventHandler, FormEventHandler, useState } from "react";
+import style from "./AddDogForm.module.css";
 export interface IAddDogFormProps {
 	onSubmit: (newDog: { name: string; age: number }) => void;
 }
@@ -19,7 +20,7 @@ const AddDogForm: React.FC<IAddDogFormProps> = ({ onSubmit }) => {
 	};
 
 	return (
-		<div className="dogInput">
+		<div className={style.dogInput}>
 			<form onSubmit={handleSubmit}>
 				<label>
 					<span>Dog's Name:</span>

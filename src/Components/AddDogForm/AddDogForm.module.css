@@ -1,0 +1,20 @@
+.dogInput {
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	padding: 10px;
+	border: 1px solid black;
+	width: 50%;
+	align-self: center;
+	display: flex;
+}
+
+.dogInput input {
+	padding: 5px;
+}
+.dogInput span {
+	padding: 5px;
+}
+.dogInput button {
+	padding: 5px;
+	margin-left: 10px;
+}

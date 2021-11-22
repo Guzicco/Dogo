@@ -11,6 +11,7 @@ export interface IDog {
 	age: number;
 	id: number;
 }
+
 const API_URL = "http://localhost:4000";
 
 function App() {

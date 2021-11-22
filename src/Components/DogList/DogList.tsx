@@ -1,6 +1,7 @@
 import React from "react";
 import { IDog } from "../../App";
 import Dog from "../Dog/Dog";
+import style from "./DogList.module.css";
 
 export interface IDogList {
 	list: IDog[];
@@ -9,7 +10,7 @@ export interface IDogList {
 
 const DogList: React.FC<IDogList> = ({ list, onRemoveDog }) => {
 	return (
-		<div className="galleryWrapper">
+		<div className={style.galleryWrapper}>
 			{list.map((item) => (
 				<Dog
 					name={item.name}
