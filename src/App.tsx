@@ -10,15 +10,19 @@ export interface IDog {
 	name: string;
 	age: number;
 	id: number;
+	imgURL?: string;
 }
 
-const API_URL = "http://localhost:4000";
+const isDev = process.env.NODE_ENV === "development";
+const API_URL = isDev
+	? "http://localhost:4000"
+	: "https://json-server-dogo.herokuapp.com";
 
 function App() {
 	const [dogList, setDogList] = useState<IDog[]>([]);
 	const [isLoading, setIsLoading] = useState<Boolean>(true);
 
-	useEffect(() => {
+	const fetchDogs = () => {
 		fetch(`${API_URL}/dogs`)
 			.then((response) => {
 				setIsLoading(true);
@@ -30,12 +34,14 @@ function App() {
 				setDogList(data);
 				setIsLoading(false);
 			});
-	}, []);
+	};
 
-	const addNewDog: IAddDogFormProps["onSubmit"] = ({ age, name }) => {
+	useEffect(fetchDogs, []);
+
+	const addNewDog: IAddDogFormProps["onSubmit"] = ({ age, name, imgURL }) => {
 		fetch(`${API_URL}/dogs`, {
 			method: "POST",
-			body: JSON.stringify({ name, age }),
+			body: JSON.stringify({ name, age, imgURL }),
 			headers: { "Content-Type": "application/json" },
 		})
 			.then((response) => {
@@ -60,13 +66,30 @@ function App() {
 		});
 	};
 
+	const handleUpdateSubmit: IDogList["onUpdateSubmit"] = (
+		name: string,
+		age: number,
+		id: number,
+		imgURL?: string
+	) => {
+		fetch(`${API_URL}/dogs/${id}`, {
+			method: "PUT",
+			body: JSON.stringify({ name, age, imgURL }),
+			headers: { "Content-Type": "application/json" },
+		}).then(() => {
+			fetchDogs();
+		});
+	};
+
 	return (
 		<div className="App">
-			<nav>
-				<h1>Dogs - Men's Best Friends</h1>
-			</nav>
+			<h1>Dogs - Men's Best Friends</h1>
 			<AddDogForm onSubmit={addNewDog} />
-			<DogList list={dogList} onRemoveDog={handleRemoveDog} />
+			<DogList
+				list={dogList}
+				onRemoveDog={handleRemoveDog}
+				onUpdateSubmit={handleUpdateSubmit}
+			/>
 			{isLoading ? <LoadingOverlay /> : null}
 		</div>
 	);

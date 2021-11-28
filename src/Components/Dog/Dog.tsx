@@ -1,30 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./Dog.module.css";
-interface IDog {
-	name: string;
-	age: number;
-	id: number;
-}
+import { IDog } from "../../App";
+import DogModal from "./DogModal";
+
 export interface IDogProps extends IDog {
 	onDeleteDog: (id: number) => void;
+	onDogUpdate: (name: string, age: number, id: number) => void;
 }
 
 const Dog: React.FC<IDogProps> = (props) => {
-	const [dogImageURL, setDogImageURL] = useState("");
+	const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
-	useEffect(() => {
-		fetch("https://dog.ceo/api/breeds/image/random")
-			.then((response) => {
-				return response.json();
-			})
-			.then((data) => {
-				setDogImageURL(data.message);
-			});
-	}, []);
+	const openModal = () => {
+		setModalIsOpen(true);
+	};
+	const closeModal = () => {
+		setModalIsOpen(false);
+	};
+	const handleDogUpdate = ({
+		dogNameUpdate,
+		dogAgeUpdate,
+	}: {
+		dogNameUpdate: string;
+		dogAgeUpdate: number;
+	}) => {
+		closeModal();
+		props.onDogUpdate(
+			dogNameUpdate || props.name,
+			dogAgeUpdate || props.age,
+			props.id
+		);
+	};
 
 	return (
 		<div key={props.id} className={style.dog}>
-			<img src={dogImageURL} alt="cute dog"></img>
+			<img src={props.imgURL} alt="cute dog"></img>
 			<p>Name: {props.name}</p>
 			<p>Age: {props.age}</p>
 			<button
@@ -32,8 +42,10 @@ const Dog: React.FC<IDogProps> = (props) => {
 					props.onDeleteDog(props.id);
 				}}
 			>
-				Delete {props.name}
+				Delete Dog
 			</button>
+			<button onClick={openModal}>Edit Dog</button>
+			<DogModal isOpen={modalIsOpen} onDogUpdate={handleDogUpdate}></DogModal>
 		</div>
 	);
 };

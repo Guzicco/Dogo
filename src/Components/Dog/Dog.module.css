@@ -22,3 +22,25 @@
 	background-color: lightblue;
 	border-radius: 20px;
 }
+
+.modalPopup {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ModalPopup {
+	position: relative;
+	width: 50%;
+	margin-inline: auto;
+	margin-block-start: 10%;
+	height: 30%;
+	background-color: papayawhip;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid green;
+	border-radius: 10px;
+	box-shadow: 3px 3px 4px green;
+	background: pink;
+}
