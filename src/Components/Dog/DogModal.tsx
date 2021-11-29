@@ -50,7 +50,7 @@ const DogModal: React.FC<IDogModal> = ({ isOpen, onDogUpdate }) => {
 		>
 			<div>
 				<h3>Update Dog Information</h3>
-				<form className="Modal--UpdateForm" onSubmit={handleUpdate}>
+				<form className="Modal UpdateForm" onSubmit={handleUpdate}>
 					<label>
 						<span>Dog's Name:</span>
 						<input
@@ -71,10 +71,12 @@ const DogModal: React.FC<IDogModal> = ({ isOpen, onDogUpdate }) => {
 							value={dogAge}
 						></input>
 					</label>
-					<button className="Submit-Button" type="submit">
-						Update Dog
-					</button>
-					<button onClick={() => (isOpen = false)}>Abort</button>
+					<div>
+						<button className="Submit-Button" type="submit">
+							Update Dog
+						</button>
+						<button onClick={() => (isOpen = false)}>Cancel</button>
+					</div>
 				</form>
 			</div>
 		</ReactModal>

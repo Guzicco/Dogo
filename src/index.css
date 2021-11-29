@@ -10,34 +10,5 @@ body {
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
-}
-
-.ModalPopup {
-	position: relative;
-	width: 50%;
-	margin-inline: auto;
-	margin-block-start: 10%;
-	height: 30%;
-	background-color: papayawhip;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 2px solid green;
-	border-radius: 10px;
-	box-shadow: 3px 3px 4px green;
-}
-
-.ModalPopup .Modal--UpdateForm > label {
-	padding-inline: 10px;
-	font-size: medium;
-}
-
-.ModalPopup .Modal--UpdateForm > label > span {
-	padding-right: 10px;
-}
-
-input.dogData {
-	padding-inline: 5px;
-	border-radius: 5px;
-	font-size: medium;
+	font-size: 1.5rem;
 }

@@ -1,20 +1,25 @@
 .dogForm {
-	margin-top: 10vh;
-	margin-bottom: 10vh;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	padding: 10px;
-	border: 1px solid black;
 	width: 50%;
 	align-self: center;
+}
+.dogForm form {
+	display: block;
+}
+.dogForm form label {
 	display: flex;
+	justify-content: space-between;
+	margin-inline: 10%;
+	margin-block: 10px;
 }
 
 .dogForm input {
-	padding: 5px;
+	padding-block: 4px;
+	max-width: 60%;
+	min-width: 40%;
 }
 .dogForm span {
 	padding: 5px;
-}
-.dogForm button {
-	padding: 5px;
-	margin-left: 10px;
 }

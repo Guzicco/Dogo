@@ -83,7 +83,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Dogs - Men's Best Friends</h1>
+			<h1 className="coolBackground">Dogs - Men's Best Friends</h1>
 			<AddDogForm onSubmit={addNewDog} />
 			<DogList
 				list={dogList}

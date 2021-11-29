@@ -33,7 +33,7 @@ const Dog: React.FC<IDogProps> = (props) => {
 	};
 
 	return (
-		<div key={props.id} className={style.dog}>
+		<div key={props.id} className={style.dog + " coolBackground"}>
 			<img src={props.imgURL} alt="cute dog"></img>
 			<p>Name: {props.name}</p>
 			<p>Age: {props.age}</p>

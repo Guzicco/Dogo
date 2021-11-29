@@ -4,11 +4,35 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	background: rgb(195, 50, 34);
-	background: linear-gradient(
-		0deg,
-		rgba(195, 50, 34, 1) 0%,
-		rgba(253, 244, 45, 1) 100%
-	);
+	background-image: url(./img/Animals-Dog-Bone-icon.png);
+	background-repeat: repeat;
+	background-attachment: fixed;
+	background-size: 20px;
+	background-color: darkkhaki;
+	background-clip: content-box;
 	min-height: 100vh;
+}
+
+.coolBackground {
+	border: 2px solid lightblue;
+	border-radius: 20px;
+	padding-bottom: 20px;
+	background: rgb(21, 233, 227);
+	background: linear-gradient(
+		160deg,
+		rgba(21, 233, 227, 1) 0%,
+		rgba(243, 31, 31, 1) 100%
+	);
+}
+
+h1 {
+	font-size: 4rem;
+	padding: 20px;
+}
+
+button {
+	padding: 10px 15px;
+	background-color: lightblue;
+	border-radius: 20px;
+	margin: 5px;
 }

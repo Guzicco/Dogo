@@ -33,7 +33,7 @@ const AddDogForm: React.FC<IAddDogFormProps> = ({ onSubmit }) => {
 	};
 
 	return (
-		<div className={style.dogForm}>
+		<div className={style.dogForm + " coolBackground"}>
 			<form onSubmit={handleSubmit}>
 				<label>
 					<span>Dog's Name:</span>
